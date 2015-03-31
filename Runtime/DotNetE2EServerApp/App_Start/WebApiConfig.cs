@@ -13,6 +13,7 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Http;
+using Microsoft.WindowsAzure.Mobile.Service.Security.Providers;
 using ZumoE2EServerApp.DataObjects;
 using ZumoE2EServerApp.Models;
 using Newtonsoft.Json.Linq;
@@ -29,6 +30,9 @@ namespace ZumoE2EServerApp
                 PushAuthorization = AuthorizationLevel.Application,
                 DiagnosticsAuthorization = AuthorizationLevel.Anonymous,
             };
+
+            options.LoginProviders.Remove(typeof(AzureActiveDirectoryLoginProvider));
+            options.LoginProviders.Add(typeof(AzureActiveDirectoryExtendedLoginProvider));
 
             HttpConfiguration config = ServiceConfig.Initialize(new ConfigBuilder(options));
 
