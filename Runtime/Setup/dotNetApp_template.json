@@ -1,30 +1,30 @@
 {
-  "name":"example-dotnet",
+  "name":"ClientSdkDotNetApp",
   "useExistingApp":"false",
   "platform":"DotNet",
   "location":"West US",
   "tier":"Free",
   "sql":{
-    "server":"YOUR_SERVER_NAME",
-    "db":"YOUR_DB_NAME",
-    "user":"YOUR_DB_USER",
-    "password":"YOUR_DB_PASSWORD"
+    "server":"wnnjwcd94x",
+    "db":"ClientSdkDotNet_db",
+    "user":"sqladmin",
+    "password":"General123"
   },
-  "appKey":"YOUR_APP_KEY",
-  "corsWhitelist":"CORS_WHITELIST",
+  "appKey":"ABCDEabcdeABCDEabcdeABCDEabcde12",
+  "corsWhitelist":"https://clientsdkdotnetapp.azure-mobile.net/",
   "srcFiles":"../DotNetE2EServerApp",
   "binFiles":"",
-  "siteExtensionPath":"path/to/privateSiteExtension.zip",
+  "siteExtensionPath":"E:\\shrirang\\releaseprocess\\MobileServicesDotNet.1.0.454.private.zip",
   "pingEndpoint":"tables/movies",
-  "googleClientId":"YOUR_GOOGLE_CLIENTID",
-  "googleClientSecret":"YOUR_GOOGLE_CLIENTSECRET",
-  "msClientId":"YOUR_MICROSOFT_CLIENTID",
-  "msClientSecret":"YOUR_MICROSOFT_CLIENTSECRET",
-  "msPackageSID":"YOUR_MICROSOFT_PACKAGESID",
-  "fbClientId":"YOUR_FACEBOOK_CLIENTID",
-  "fbClientSecret":"YOUR_FACEBOOK_CLIENTSECRET",
-  "twitterApiKey":"YOUR_TWITTER_CLIENTID",
-  "twitterApiSecret":"YOUR_TWITTER_CLIENTSECRET",
+  "googleClientId":"770969308035-1fbqt2jpvd28ceiedgsdnife751ht22h.apps.googleusercontent.com",
+  "googleClientSecret":"WpeEg89SGGuatjRfx-pQLolv",
+  "msClientId":"000000004015134B",
+  "msClientSecret":"cuRGNTpUK5HS2w5aKgUpP0GklB2rCUIU",
+  "msPackageSID":"ms-app://s-1-15-2-1099500890-2877292760-1207827013-4057279318-3635591944-2796085048-174517453",
+  "fbClientId":"916326815096427",
+  "fbClientSecret":"7bab48ebad239d86254a20953130d293",
+  "twitterApiKey":"AR1nwDcELl1cEwREU2EMMMUNZ",
+  "twitterApiSecret":"muikkc3QqivQSU6eMjQJDDXakU96c0Rc9CsyeAbZHzugu1dvqw",
   "push": {
         "apns": {
             "mode": "",
@@ -39,8 +39,8 @@
             "certPassword":  ""
         },
         "wns": {
-            "clientSecret": "",
-            "packageSid":  ""
+            "clientSecret": "cuRGNTpUK5HS2w5aKgUpP0GklB2rCUIU",
+            "packageSid":  "ms-app://s-1-15-2-1099500890-2877292760-1207827013-4057279318-3635591944-2796085048-174517453"
         }
     }
 }
