@@ -16,6 +16,17 @@ namespace Microsoft.WindowsAzure.Mobile.iOS.Test
             string mobileServiceUri = defaults.StringForKey(MobileServiceUriKey);
             string mobileServiceKey = defaults.StringForKey(MobileServiceKeyKey);
             string tags = defaults.StringForKey(TagsKey);
+
+            // Node
+            mobileServiceUri = "https://clientsdknodeapp.azure-mobile.net/";
+            mobileServiceKey = "ABCDEabcdeABCDEabcdeABCDEabcde12";
+            tags = "!DotNetRuntimeOnly";
+
+            // DotNet
+            //mobileServiceUri = "https://clientsdkdotnetapp.azure-mobile.net/";
+            //mobileServiceKey = "ABCDEabcdeABCDEabcdeABCDEabcde12";
+            //tags = "!NodeRuntimeOnly*!DotNetRuntimeBug";
+
             string daylightUri = defaults.StringForKey(DaylightUriKey);
             string daylightProject = defaults.StringForKey(DaylightProjectKey);
             string clientId = defaults.StringForKey(ClientIdKey);
