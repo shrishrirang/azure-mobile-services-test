@@ -35,6 +35,16 @@ namespace Microsoft.WindowsAzure.MobileServices.Test
             string mobileServiceRuntimeKey = Settings.Default.MobileServiceRuntimeKey;
             string tags = Settings.Default.MobileServiceTags;
 
+            // Node
+            mobileServiceRuntimeURL = "https://clientsdknodeapp.azure-mobile.net/";
+            mobileServiceRuntimeKey = "ABCDEabcdeABCDEabcdeABCDEabcde12";
+            tags = "!DotNetRuntimeOnly";
+
+            // DotNet
+            //mobileServiceRuntimeURL = "https://clientsdkdotnetapp.azure-mobile.net/";
+            //mobileServiceRuntimeKey = "ABCDEabcdeABCDEabcdeABCDEabcde12";
+            //tags = "!NodeRuntimeOnly*!DotNetRuntimeBug";
+
             txtRuntimeUri.Text = mobileServiceRuntimeURL ?? "";
             txtRuntimeKey.Text = mobileServiceRuntimeKey ?? "";
             txtTags.Text = tags ?? "";

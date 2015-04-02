@@ -40,9 +40,15 @@ namespace Microsoft.WindowsAzure.Mobile.Android.Test
             this.keyText = FindViewById<EditText>(Resource.Id.ServiceKey);
             this.tagsText = FindViewById<EditText>(Resource.Id.ServiceTags);
 
-            this.uriText.Text = prefs.GetString(Keys.MobileServiceUri, null);
-            this.keyText.Text = prefs.GetString(Keys.MobileServiceKey, null);
-            this.tagsText.Text = prefs.GetString(Keys.TagExpression, null);
+            // Node 
+            //this.uriText.Text = "https://clientsdknodeapp.azure-mobile.net/"; //prefs.GetString(Keys.MobileServiceUri, null);
+            //this.keyText.Text = "ABCDEabcdeABCDEabcdeABCDEabcde12"; //prefs.GetString(Keys.MobileServiceKey, null);
+            //this.tagsText.Text = "!DotNetRuntimeOnly"; //prefs.GetString(Keys.TagExpression, null);
+
+            // DotNet
+            this.uriText.Text = "https://clientsdkdotnetapp.azure-mobile.net/"; //prefs.GetString(Keys.MobileServiceUri, null);
+            this.keyText.Text = "ABCDEabcdeABCDEabcdeABCDEabcde12"; //prefs.GetString(Keys.MobileServiceKey, null);
+            this.tagsText.Text = "!NodeRuntimeOnly*!DotNetRuntimeBug"; //prefs.GetString(Keys.TagExpression, null);
 
             FindViewById<Button>(Resource.Id.RunTests).Click += OnClickRunTests;
             FindViewById<Button>(Resource.Id.Login).Click += OnClickLogin;

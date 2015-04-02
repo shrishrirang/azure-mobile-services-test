@@ -37,9 +37,20 @@ namespace Microsoft.WindowsAzure.MobileServices.Test
             unitTests.ItemsSource = _groups;
 
             var configString = ReadFile(@"TestInput\input.txt");
-            txtRuntimeUri.Text = ""; // Set the default URI here
-            txtRuntimeKey.Text = ""; // Set the default Key here
-            txtTags.Text = ""; // Set the default tags here
+
+            // Node
+            //var mobileServiceRuntimeURL = "https://clientsdknodeapp.azure-mobile.net/";
+            //var mobileServiceRuntimeKey = "ABCDEabcdeABCDEabcdeABCDEabcde12";
+            //var tags = "!DotNetRuntimeOnly";
+
+            // DotNet
+            var mobileServiceRuntimeURL = "https://clientsdkdotnetapp.azure-mobile.net/";
+            var mobileServiceRuntimeKey = "ABCDEabcdeABCDEabcdeABCDEabcde12";
+            var tags = "!NodeRuntimeOnly*!DotNetRuntimeBug";
+
+            txtRuntimeUri.Text = mobileServiceRuntimeURL ?? "";
+            txtRuntimeKey.Text = mobileServiceRuntimeKey ?? "";
+            txtTags.Text = tags ?? "";
 
             if (!String.IsNullOrEmpty(configString))
             {
