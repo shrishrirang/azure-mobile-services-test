@@ -35,7 +35,6 @@
 		87FA8406174FE58A0089EDEA /* ZumoCustomApiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FA8405174FE58A0089EDEA /* ZumoCustomApiTests.m */; };
 		87FA840B17569AB90089EDEA /* TestLoggingFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FA840A17569AB90089EDEA /* TestLoggingFilter.m */; };
 		A20EF08A1993F1F000C64641 /* ZumoDaylightConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A20EF0891993F1F000C64641 /* ZumoDaylightConnection.m */; };
-		A25E6DC01AA65AD3008C556F /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A25E6DBF1AA65AD3008C556F /* WindowsAzureMobileServices.framework */; };
 		A2B509DD199ABF1A00A914CF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2B509DC199ABF1A00A914CF /* MessageUI.framework */; };
 		A2B509E0199B376C00A914CF /* ZumoTestResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B509DF199B376C00A914CF /* ZumoTestResultViewController.m */; };
 		A2B509E3199C006600A914CF /* Main_iPad.Storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2B509E1199C006600A914CF /* Main_iPad.Storyboard */; };
