@@ -45,7 +45,7 @@ namespace ZumoE2EServerApp.Controllers
 
                 var token = (string)data["token"];
 
-                var payloadString = (string)data["payload"];
+                var payloadString = data["payload"].ToString();
                 var type = (string)data["type"];
                 var tag = (string)data["tag"];
 
