@@ -70,7 +70,10 @@
         self.appUrl.text = [lastUsedApp objectAtIndex:0];
         self.appKey.text = [lastUsedApp objectAtIndex:1];
     }
-
+    
+    self.appUrl.text = @"http://shrirsv2-code.azurewebsites.net/";
+    self.appKey.text = @"AjjjLWzdlTiQdWIJwUMktcWbcasFPQ81";
+    
     [self registerForKeyboardNotifications];
 }
 
