@@ -183,7 +183,7 @@ static NSString *pushClientKey = @"PushClientKey";
     
     [test addLog:[NSString stringWithFormat:@"Sending a request to %@ / table %@", client.applicationURL.description, tableName]];
     
-    NSDictionary *item = @{@"method" : @"send", @"payload" : payload, @"token": deviceToken, @"delay": @(seconds)};
+    NSDictionary *item = @{@"method" : @"send", @"type" : @"apns", @"payload" : payload, @"token": deviceToken, @"delay": @(seconds)};
 
     [client invokeAPI:@"push" body:item HTTPMethod:@"POST" parameters:nil headers:nil completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
         
@@ -296,9 +296,8 @@ static NSString *pushClientKey = @"PushClientKey";
                 test.testStatus = TSFailed;
                 completion(NO);
                 return;
-                [self sendNotification:client test:test seconds:seconds deviceToken:deviceTokenString payload:payload completion:completion isNegative:isNegative];
             }
-            
+
             completion(test.testStatus != TSFailed);
         };
         
@@ -512,7 +511,7 @@ static NSString *pushClientKey = @"PushClientKey";
                     return;
                 }
                 
-                [self sendNotificationViaInsert:client
+                [self sendNotification:client
                                            test:test
                                         seconds:seconds
                                     deviceToken:client.push.installationId
