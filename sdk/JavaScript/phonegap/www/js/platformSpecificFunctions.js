@@ -7,7 +7,7 @@ function createPlatformSpecificFunctions() {
     var alertFunction;
 
     alertFunction = function (text, done) {
-        window.alert(text);
+//        window.alert(text);
         if (done) {
             done();
         }

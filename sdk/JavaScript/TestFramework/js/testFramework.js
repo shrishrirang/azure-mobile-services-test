@@ -291,7 +291,7 @@ function createZumoNamespace() {
                 client = new WindowsAzure.MobileServiceClient(appUrl, appKey);
                 return true;
             } else {
-                testPlatform.alert('Please enter valid application URL and key', 'Error', function () {
+                testPlatform.alert('Please enter valid application URL and key', function () {
                     return false;
                 });
             }
