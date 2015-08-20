@@ -10,7 +10,7 @@ zumo.tests.MobileServiceMemoryStore = function () {
     var idProperty = "id";
     var tables = {};
 
-    this.insert = function (tableName, instance) {
+    this.upsert = function (tableName, instance) {
 
         var deferred = $.Deferred();
 
@@ -19,11 +19,6 @@ zumo.tests.MobileServiceMemoryStore = function () {
             var table = tables[tableName] = tables[tableName] || {};
 
             var instanceId = instance[idProperty];
-
-            if (table[instanceId] !== undefined) {
-                deferred.reject("Record with specified ID already exists in the table");
-                return;
-            }
 
             // Make a deep copy of the object before inserting it. 
             // We don't want future changes to the object to directly update our table data.
