@@ -2,47 +2,55 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
 
-var testServiceUrl = "http://test.com";
-var testServiceKey = "key";
-var testTableName = "items";
+function defineOfflineTestsNamespace() {
 
-function createMobileServiceClient() {
-    return new WindowsAzure.MobileServiceClient(testServiceUrl, testServiceKey);
-}
+    var testServiceUrl = "http://test.com";
+    var testServiceKey = "key";
+    var testTableName = "items";
 
-function getOfflineTests() {
-    var tests = [];
+    function createMobileServiceClient() {
 
-    tests.push(new zumo.Test('Offline test 1', function (test, done) {
-        console.log("Running " + test.name);
+        var client = new WindowsAzure.MobileServiceClient(testServiceUrl, testServiceKey);
+        client.getSyncContext().initialize(new zumo.tests.MobileServiceMemoryStore());
 
-        var client = createMobileServiceClient();
-        client.syncContext.initialize();
+        return client;
+    }
 
-        var syncTable = client.getSyncTable(testTableName);
+    function getOfflineTests() {
+        var tests = [];
 
-        var rowObject = {
-            "id": "pen",
-            "description": "reynolds",
-            "price": 51
-        };
+        tests.push(new zumo.Test('Offline test 1', function (test, done) {
+            console.log("Running " + test.name);
 
-        return syncTable.insert(rowObject).then(function () {
-            return syncTable.lookup(rowObject.id);
-        }, function () {
-            $assert.fail("Expected insert to be successful");
-        })
-        .then(function (result) {
-            //$assert.isTrue(JSON.stringify(rowObject) === JSON.stringify(result), "MobileServiceSyncTable lookup failed");
-            done(JSON.stringify(rowObject) === JSON.stringify(result));
+            var client = createMobileServiceClient();
+
+            var syncTable = client.getSyncTable(testTableName);
+
+            var rowObject = {
+                "id": "pen",
+                "description": "reynolds",
+                "price": 51
+            };
+
+            return syncTable.insert(rowObject).then(function () {
+                return syncTable.lookup(rowObject.id);
             }, function () {
-            //$assert.fail("Lookup should have succeeded");
+                $assert.fail("Expected insert to be successful");
+            })
+            .then(function (result) {
+                //$assert.isTrue(JSON.stringify(rowObject) === JSON.stringify(result), "MobileServiceSyncTable lookup failed");
+                done(JSON.stringify(rowObject) === JSON.stringify(result));
+            }, function () {
+                //$assert.fail("Lookup should have succeeded");
                 done(false);
             });
 
-    }));
+        }));
 
-    return tests;
+        return tests;
+    }
+
+    zumo.testGroups.push(new zumo.Group('Offline', getOfflineTests()));
 }
 
-zumo.testGroups.push(new zumo.Group('Offline', getOfflineTests()));
+zumo.tests.offlineTests = defineOfflineTestsNamespace();
