@@ -11,7 +11,6 @@ function defineOfflineTests() {
     function createMobileServiceClient() {
 
         var client = new WindowsAzure.MobileServiceClient(testServiceUrl, testServiceKey);
-        client.getSyncContext().initialize(new zumo.tests.MobileServiceMemoryStore());
 
         return client;
     }
@@ -23,28 +22,39 @@ function defineOfflineTests() {
             console.log("Running " + test.name);
 
             var client = createMobileServiceClient();
+            var store = new WindowsAzure.MobileServiceSQLiteStore("test.db");
+            client.getSyncContext().initialize(store);
 
-            var syncTable = client.getSyncTable(testTableName);
+            store.defineTable({
+                    name: "FirstTable",
+                    columnDefinitions: {
+                        id: "TEXT",
+                        description: "INTEGER",
+                        misc: "REAL"
+                    }
+                })
+                .then(function() {
+                    var syncTable = client.getSyncTable(testTableName);
 
-            var rowObject = {
-                "id": "pen",
-                "description": "reynolds",
-                "price": 51
-            };
+                    var rowObject = {
+                        "id": "pen",
+                        "description": "reynolds",
+                        "price": 51
+                    };
 
-            return syncTable.insert(rowObject).then(function () {
-                return syncTable.lookup(rowObject.id);
-            }, function () {
-                $assert.fail("Expected insert to be successful");
-            })
-            .then(function (result) {
-                //$assert.isTrue(JSON.stringify(rowObject) === JSON.stringify(result), "MobileServiceSyncTable lookup failed");
-                done(JSON.stringify(rowObject) === JSON.stringify(result));
-            }, function () {
-                //$assert.fail("Lookup should have succeeded");
-                done(false);
-            });
-
+                    return syncTable.insert(rowObject).then(function() {
+                        return syncTable.lookup(rowObject.id);
+                    }, function() {
+                        $assert.fail("Expected insert to be successful");
+                    });
+                })
+                .then(function(result) {
+                    //$assert.isTrue(JSON.stringify(rowObject) === JSON.stringify(result), "MobileServiceSyncTable lookup failed");
+                    done(JSON.stringify(rowObject) === JSON.stringify(result));
+                }, function() {
+                    //$assert.fail("Lookup should have succeeded");
+                    done(false);
+                });
         }));
 
         return tests;
