@@ -44,11 +44,22 @@ function defineOfflineTests() {
                 .then(function () {
                     syncTable = client.getSyncTable(testTableName);
                     return syncTable.del(rowObject);
-                    //return syncTable.insert(rowObject);
                 })
                 .then(function () {
-                    rowObject.description = "same ID, but updated value";
+                    syncTable = client.getSyncTable(testTableName);
                     return syncTable.insert(rowObject);
+                })
+                .then(function () {
+                    syncTable = client.getSyncTable(testTableName);
+                    return syncTable.del(rowObject);
+                })
+                .then(function () {
+                    rowObject.description = "same ID, but updated value 111";
+                    return syncTable.insert(rowObject);
+                })
+                .then(function () {
+                    rowObject.description = "same ID, but updated value 222";
+                    return syncTable.update(rowObject);
                 })
                 .then(function () {
                     return syncTable.lookup(rowObject.id);
