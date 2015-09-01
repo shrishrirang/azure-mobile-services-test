@@ -18,42 +18,45 @@ function defineOfflineTests() {
     function getOfflineTests() {
         var tests = [];
 
-        tests.push(new zumo.Test('Offline test 1', function (test, done) {
+        tests.push(new zumo.Test('Insert test', function (test, done) {
             console.log("Running " + test.name);
 
             var client = createMobileServiceClient();
-            var store = new WindowsAzure.MobileServiceSQLiteStore("test.db");
+            var store = new WindowsAzure.MobileServiceSQLiteStore("test6.db");
+
             client.getSyncContext().initialize(store);
 
+            var rowObject = {
+                "id": "101",
+                "description": "reynolds pen",
+                "price": 10.01
+            };
+
+            var syncTable;
             store.defineTable({
-                    name: "FirstTable",
-                    columnDefinitions: {
-                        id: "TEXT",
-                        description: "INTEGER",
-                        misc: "REAL"
-                    }
+                name: testTableName,
+                columnDefinitions: {
+                    id: WindowsAzure.MobileServiceSQLiteStore.ColumnType.TEXT,
+                    description: WindowsAzure.MobileServiceSQLiteStore.ColumnType.TEXT,
+                    price: WindowsAzure.MobileServiceSQLiteStore.ColumnType.TEXT
+                }
+            })
+                .then(function () {
+                    syncTable = client.getSyncTable(testTableName);
+                    return syncTable.del(rowObject);
+                    //return syncTable.insert(rowObject);
                 })
-                .then(function() {
-                    var syncTable = client.getSyncTable(testTableName);
-
-                    var rowObject = {
-                        "id": "pen",
-                        "description": "reynolds",
-                        "price": 51
-                    };
-
-                    return syncTable.insert(rowObject).then(function() {
-                        return syncTable.lookup(rowObject.id);
-                    }, function() {
-                        $assert.fail("Expected insert to be successful");
-                    });
+                .then(function () {
+                    rowObject.description = "same ID, but updated value";
+                    return syncTable.insert(rowObject);
                 })
-                .then(function(result) {
-                    //$assert.isTrue(JSON.stringify(rowObject) === JSON.stringify(result), "MobileServiceSyncTable lookup failed");
+                .then(function () {
+                    return syncTable.lookup(rowObject.id);
+                })
+                .then(function (result) {
                     done(JSON.stringify(rowObject) === JSON.stringify(result));
-                }, function() {
-                    //$assert.fail("Lookup should have succeeded");
-                    done(false);
+                }, function (error) {
+                    done(false); // lookup should have succeeded
                 });
         }));
 
